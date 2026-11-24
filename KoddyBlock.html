@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>KoddyBlock</title>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="https://d1lfq4l7qrwuau.cloudfront.net/images/icon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="./KoddyBlock_files/bootstrap.min.css">
+  <link rel="stylesheet" href="./KoddyBlock_files/style.css">
+  <script src="./KoddyBlock_files/jquery.min.js.download"></script>
+  <script src="./KoddyBlock_files/bootstrap.min.js.download"></script>
+    <link href="./KoddyBlock_files/css2" rel="stylesheet">  <style>
+      @import url('https://fonts.googleapis.com/css?family=Caveat+Brush&display=swap');
+			.quiz-link{
+				display: -webkit-box;
+				display: -ms-flexbox;
+				display: flex;
+				-webkit-box-align: center;
+				-ms-flex-align: center;
+				align-items: center;
+				-webkit-box-pack: center;
+				-ms-flex-pack: center;
+				justify-content: center;
+				-ms-flex-wrap: wrap;
+				flex-wrap: wrap;
+				border-radius: 20px;
+				background: url(https://d1lfq4l7qrwuau.cloudfront.net/images/start_quiz.svg) center no-repeat;
+				background-size: contain;
+        margin-right: 10px;
+			}
+			.quiz-link p{
+        width: 60px;
+        height: 60px;
+        line-height: 20px;
+        padding-top: 8px;
+        margin-bottom: 0;
+			}
+			.quiz-link span{
+				font-size: 15px;
+    			line-height: 15px;
+				font-weight: 700;
+				color: #9dff00;
+				text-shadow: 0px 7px 13px rgba(75, 202, 10, 0.9);
+				position: relative;
+			}
+      .direction-link {
+          display: -webkit-box;
+          display: -ms-flexbox;
+          display: flex;
+          -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          -webkit-box-align: center;
+          -ms-flex-align: center;
+          align-items: center;
+          justify-content: flex-end;
+          min-width: 196px;
+          position: relative;
+          z-index: 5;
+      }
+      .dashboard-icon {
+          margin-right: 10px;
+          border-radius: 100%;
+      }
+      .dashboard-icon img {
+          width: 60px;
+      }
+      .direction-link .total-star {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            position: relative;
+            width: 60px;
+            height: 60px;
+            transition: -webkit-transform 1s ease-in;
+        }
+        .direction-link .total-star span {
+          font-family: 'Caveat Brush', cursive;
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          background: url('https://d1lfq4l7qrwuau.cloudfront.net/images/coin.svg') center no-repeat;
+              background-size: auto;
+          background-size: contain;
+          display: -webkit-box;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-box-pack: center;
+          -ms-flex-pack: center;
+          justify-content: center;
+          -webkit-box-align: center;
+          -ms-flex-align: center;
+          align-items: center;
+          font-size: 22px;
+          line-height: 22px;
+          color: #61410f;
+      }
+      .logout {
+          border-radius: 50%;
+          margin-left: 10px;
+          display: inline-block;
+      }
+      .logout img {
+          width: 60px;
+      }
+      html, body{
+          overflow-x: hidden !important;
+          max-width: 100% !important;
+      }
+      .left-panle-content .container-fluid{
+          padding-left:0px !important;
+          padding-right:0px !important;
+      }
+      iframe{
+        height:calc(100vh - 158px) !important;
+      }
+      .col-sm-8{
+            width: 100% !important;
+          }
+      .left-panle-content{
+          position: relative;
+          max-width: 100% !important;
+          overflow-x: hidden !important;
+          padding-left: 0 !important;
+          padding-right: 0 !important;
+      }
+      .lesson-body-container{
+          padding-left: 0 !important;
+          padding-right: 0 !important;
+      }
+      .left-panle-content.lesson-split-panel{
+          overflow-y: auto;
+          height: calc(100vh - 158px);
+          background: #f5f5ef;
+      }
+      .lesson-embed{
+          width: 100% !important;
+          max-width: 100% !important;
+          margin: 0 !important;
+          overflow-x: hidden !important;
+          font-family: 'Nunito', sans-serif;
+      }
+      /* Fixed nav bar — outside .lesson-embed so position:fixed works like the reference HTML */
+      #nav-bar{
+          position: fixed !important;
+          bottom: 0 !important;
+          left: 0 !important;
+          right: 0 !important;
+          z-index: 99999 !important;
+          display: flex !important;
+          visibility: visible !important;
+          opacity: 1 !important;
+          justify-content: center !important;
+          align-items: center !important;
+          gap: 16px !important;
+          background: var(--white, #fff) !important;
+          border-top: 2px solid #e2e8f0 !important;
+          padding: 10px 24px !important;
+          box-shadow: 0 -4px 16px rgba(0,0,0,.06) !important;
+      }
+      #nav-bar button{
+          padding: 9px 26px !important;
+          border-radius: 99px !important;
+          font-family: 'Nunito', sans-serif !important;
+          font-weight: 800 !important;
+          font-size: 13px !important;
+          border: none !important;
+          cursor: pointer !important;
+      }
+      #nav-bar .btn-prev{
+          background: #f1f5f9 !important;
+          color: #475569 !important;
+      }
+      #nav-bar .btn-next{
+          background: #3b82f6 !important;
+          color: #fff !important;
+      }
+      #nav-bar #si{
+          font-size: 13px !important;
+          font-weight: 700 !important;
+          color: #475569 !important;
+      }
+      .left-panle-content.lesson-split-panel #nav-bar{
+          right: auto !important;
+          width: 41.66666667% !important;
+      }
+      .left-panle-content #main{
+          max-width: 900px !important;
+          margin: 0 auto !important;
+          padding-bottom: 80px !important;
+      }
+      #completion-overlay{
+          z-index: 100000 !important;
+      }
+      #confetti-canvas{
+          z-index: 100001 !important;
+      }
+      /* Protect page chrome (header/footer) from leaking lesson "img {}" rules
+         (e.g. img{max-width:50%;border:...} inside a lesson would otherwise shrink/border the logo) */
+      .header img,
+      .direction-link img,
+      footer img{
+          max-width: none !important;
+          border: 0 !important;
+          border-radius: 0 !important;
+          box-shadow: none !important;
+      }
+      .header > a img{
+          margin: 0 !important;
+      }
+      .direction-link img{
+          margin: 0 10px 0 0 !important;
+      }
+      /* Remove the dark focus/active outline shown when clicking Start project / Start Quiz / Home */
+      .header a,
+      .direction-link a,
+      footer a{
+          outline: none !important;
+          -webkit-tap-highlight-color: transparent !important;
+      }
+      .header a:focus,
+      .header a:active,
+      .header a:hover,
+      .direction-link a:focus,
+      .direction-link a:active,
+      .direction-link a:hover,
+      footer a:focus,
+      footer a:active{
+          outline: 0 !important;
+          box-shadow: none !important;
+          text-decoration: none !important;
+      }
+		</style>
+</head>
+<body>
+
+	<div class="container-fluid text-center" style="border-bottom: 0px;">    
+		<div class="header" style=" background-color: #64bbb6; webkit-box-shadow: 0px 0px 11px rgb(158, 158, 158); box-shadow: 0px 0px 11px rgb(158, 158, 158); border-bottom: 0px; border-bottom: 0px; display: flex; justify-content: space-between; align-items: center; margin: 0 -15px; padding: 20px;">
+    <a href="https://koddyblock.com/" style="display:inline-block; width:196px"><img src="./KoddyBlock_files/login-logo.svg"></a> 
+    <div class="direction-link">
+                <span class="pull-right">
+            <a href="http://ide.koddyblock.com/editor/python?data=dzlsWmxNU3dEY0UrMDFGeVFON2lCZjJid2p0QjkrU0ZyTkFEQUN1aEo3WnVCdHo5SkFBcXFiNUdwWlV0eWs3K09sQ3J3RVo4bmd6b2N0U0lQbkZ5YVh1aGRMM3lQSG4zUW1IcHFWM01na21XR3VZa2MvbFpVT1FiWWlxSU1uLzFRL0hPOUE9PQ%3D%3D" target="_BLANK" title="Start project">
+              <img src="./KoddyBlock_files/StartProject.png" style="width:60px; margin-right:10px" alt="Start project">
+            </a>
+          </span>
+        
+        <a href="https://game.koddyblock.com/course/1092/lesson/314/activity/0" class="text-right">
+          <!-- <span class="quiz-link p-3 text-white text-center">
+            <p><span>Start Quiz</span></p>
+          </span> -->
+          <img src="./KoddyBlock_files/quiz.png" style="width:60px; margin-right:10px" alt="dashboard-icon">
+        </a>
+                
+        <a href="https://game.koddyblock.com/" style="width: 60px; height: 60px; border: 4px solid #fff; border-radius: 50%; margin-left: 10px; display: flex; align-items: center; justify-content: center; background-color: #42cec6;">
+          <img src="./KoddyBlock_files/home-icon.svg" style="width:35px;" alt="start-icon">
+        </a>
+          
+        <!-- <div class="total-star"><span> 138 </span></div> -->
+        <!-- <a href="https://game.koddyblock.com/logout" title="Logout" class="logout">
+              <img src="https://d1lfq4l7qrwuau.cloudfront.net/images/student-logout.svg">
+        </a> -->
+        <!-- <form id="logout-form" action="https://game.koddyblock.com/logout" method="POST" style="display: none;">
+            <input type="hidden" name="_token" value="rXOqASb00rRGZTH3MdtStRmF921ggPX6p93toVUu">                  
+            <input type="hidden" name="logoutFromStudent" value="1">
+        </form> -->
+        
+    </div>
+	
+  </div>
+	</div>
+
+	<div class="container-fluid lesson-body-container" style="border-bottom:0px; min-height:calc(100vh - 158px); overflow-x:hidden; max-width:100%;">
+		<div class="row mt-5 pt-5" style="margin-left:0; margin-right:0; max-width:100%;">
+			<div class="col-md-12 left-panle-content">
+				<style>
+
+   h3, h5, h4, h2, h1{
+      background-color:#FFD95A;
+      padding:12px;
+      color:#4D6804;
+      width:100%;
+      margin-top:12px;
+      text-align: left;
+     
+    }
+    h5{
+      font-size:20px;
+      background-color:#FFD95A;
+      padding:12px;
+      color:#4D6804;
+      width:100%;
+      margin-top:12px;
+       }
+    body, p, ul, ol, li{
+      font-size:17px;
+      text-align:justify;
+      
+    }
+    table th{
+      background-color:#FFD95A;
+      padding:12px;
+      color:#4D6804 !important;
+      text-align:center;
+    }
+    table th, td{
+      /*border: 1px solid green;*/
+      padding:7px;
+    }
+    table{
+      width:100%;
+    }
+    .key table, tr, th, td {
+      background-color:none !important;
+      padding:none !important;
+      color:none !important;
+    /*  text-align: center;!important;*/
+      vertical-align: top;
+     /* border: 1px solid green;*/
+    }
+   h6{
+    font-size: 18px;
+   }
+   .im{
+   width:40%;
+    border:1px solid green;
+   height:auto;
+   }
+   .bu{
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-left: 40px;
+    width: 30%;
+	text-decoration:none;
+   }
+.sol{
+
+    background-color: #f2f8d9;
+    color: #654904;
+    font-weight: bold;
+    padding: 5px;
+    font-size: 15px;
+   }
+.row .content{
+    height: 100%;
+   }
+  </style><div class="lesson-embed">
+
+<div class="container-fluid text-center" style="padding-left: 85px;padding-right: 85px;margin-left: 22px;
+    margin-right: 22px;background-color: #f5f5ef;">    
+  <div class="row content">
+   
+    <div class="col-sm-8 text-left" style="padding:28px;"> 
+     
+      <h3><b>Python If ... Else</b></h3>
+      <hr class="newLine">
+      <h4>General Format </h4>
+      <hr class="newLine">
+      <p>The Python if statement is typical of if statements in most procedural languages. It takes the form of an if test, followed by one or more optional elif ("else if") tests and a final optional else block. The tests and the else part each have an associated block of nested statements, indented under a header line. When the if statement runs, Python executes the block of code associated with the first test that evaluates to true, or the else block if all tests prove false. The general form of an if statement looks like this:</p>
+
+<p><!-- HTML generated using hilite.me --></p><div><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">if</span> <span style="color: #333333">&lt;</span> test1 <span style="color: #333333">&gt;</span>: <span style="color: #888888"># if test</span>
+<span style="color: #333333">&lt;</span> statements1 <span style="color: #333333">&gt;</span>
+<span style="color: #008800; font-weight: bold">elif</span> <span style="color: #333333">&lt;</span> test2 <span style="color: #333333">&gt;</span> : <span style="color: #888888"># Associated block # Optional elifs</span>
+<span style="color: #333333">&lt;</span> statements2 <span style="color: #333333">&gt;</span>
+<span style="color: #008800; font-weight: bold">else</span>: <span style="color: #888888"># Optional else</span>
+<span style="color: #333333">&lt;</span> statements3 <span style="color: #333333">&gt;</span>
+</pre></div>
+
+<p></p>
+
+<br>
+<h4>Python Conditions and If statements</h4>
+ <hr class="newLine">
+ <p>Python supports the usual logical conditions from mathematics:</p>
+ <br>
+<ul>
+  <li>Equals: <a style="color: red;background: lightgrey;"> a == b</a></li><br>
+  <li>Not Equals: <a style="color: red;background: lightgrey;">a != b</a></li><br>
+  <li>Less than: <a style="color: red;background: lightgrey;">a &lt; b</a></li><br>
+  <li>Less than or equal to: <a style="color: red;background: lightgrey;">a &lt;= b</a></li><br>
+  <li>Greater than: <a style="color: red;background: lightgrey;">a &gt; b</a></li><br>
+  <li>Greater than or equal to: <a style="color: red;background: lightgrey;">a &gt;= b</a></li>
+</ul>
+
+<p>These conditions can be used in several ways, most commonly in "if statements" and loops.</p>
+<br>
+<h5><b>Example</b></h5>
+<p>If statement:</p>
+
+<p><!-- HTML generated using hilite.me --></p><div><pre style="margin: 0; line-height: 125%">a <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">33</span>
+b <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">200</span>
+<span style="color: #008800; font-weight: bold">if</span> b <span style="color: #333333">&gt;</span> a:
+<span style="color: #007020">  print</span>(<span style="background-color: #fff0f0">"b is greater than a"</span>)
+</pre></div>
+<p></p>
+<br>
+<p>In this example we use two variables, <a style="color: red;background: lightgrey;">a</a> and <a style="color: red;background: lightgrey;">b</a>, which are used as part of the if statement to test whether <a style="color: red;background: lightgrey;">b</a> is greater than <a style="color: red;background: lightgrey;">a</a>. As <a style="color: red;background: lightgrey;">a</a> is <a style="color: red;background: lightgrey;">33</a>, and <a style="color: red;background: lightgrey;">b</a> is <a style="color: red;background: lightgrey;">200</a>, we know that 200 is greater than 33, and so we print to screen that "b is greater than a".</p>
+<br>
+<h4>Indentation</h4>
+ <hr class="newLine">
+<p>Python relies on indentation (whitespace at the beginning of a line) to define scope in the code. Other programming languages often use curly brackets for this purpose.</p>
+<br>
+<h5><b>Example</b></h5>
+<br>
+<p>If statement, without indentation (will raise an error):</p>
+<p><!-- HTML generated using hilite.me --></p><div><pre style="margin: 0; line-height: 125%">a <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">33</span>
+b <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">200</span>
+<span style="color: #008800; font-weight: bold">if</span> b <span style="color: #333333">&gt;</span> a:
+<span style="color: #007020">print</span>(<span style="background-color: #fff0f0">"b is greater than a"</span>)<span style="color: #888888"># you will get an error</span>
+</pre></div>
+<p></p>
+<br>
+<h4>Elif</h4>
+ <hr class="newLine">
+<p>The <a style="color: red;background: lightgrey;">elif</a> keyword is python's way of saying "if the previous conditions were not true, then try this condition".</p>
+<br>
+<h5><b>Example</b></h5>
+<p><!-- HTML generated using hilite.me --></p><div><pre style="margin: 0; line-height: 125%">a <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">33</span>
+b <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">33</span>
+<span style="color: #008800; font-weight: bold">if</span> b <span style="color: #333333">&gt;</span> a:
+<span style="color: #007020">  print</span>(<span style="background-color: #fff0f0">"b is greater than a"</span>)
+<span style="color: #008800; font-weight: bold">elif</span> a <span style="color: #333333">==</span> b:
+<span style="color: #007020">  print</span>(<span style="background-color: #fff0f0">"a and b are equal"</span>)
+</pre></div>
+
+<p>In this example <a style="color: red;background: lightgrey;">a</a> is equal to <a style="color: red;background: lightgrey;">b</a>, so the first condition is not true, but the <a style="color: red;background: lightgrey;">elif</a> condition is true, so we print to screen that "a and b are equal".</p>
+<br>
+<h4>Else</h4>
+ <hr class="newLine">
+<p>The <a style="color: red;background: lightgrey;">else</a> keyword catches anything which isn't caught by the preceding conditions.</p>
+<br>
+<h5><b>Example</b></h5>
+<p><!-- HTML generated using hilite.me --></p><div><pre style="margin: 0; line-height: 125%">a <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">200</span>
+b <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">33</span>
+<span style="color: #008800; font-weight: bold">if</span> b <span style="color: #333333">&gt;</span> a:
+<span style="color: #007020">  print</span>(<span style="background-color: #fff0f0">"b is greater than a"</span>)
+<span style="color: #008800; font-weight: bold">elif</span> a <span style="color: #333333">==</span> b:
+<span style="color: #007020">  print</span>(<span style="background-color: #fff0f0">"a and b are equal"</span>)
+<span style="color: #008800; font-weight: bold">else</span>:
+<span style="color: #007020">  print</span>(<span style="background-color: #fff0f0">"a is greater than b"</span>)
+</pre></div>
+<p></p>
+<br>
+<p>In this example <a style="color: red;background: lightgrey;">a</a> is greater than <a style="color: red;background: lightgrey;">b</a>, so the first condition is not true, also the <a style="color: red;background: lightgrey;">elif</a> condition is not true, so we go to the <a style="color: red;background: lightgrey;">else</a> condition and print to screen that "a is greater than b".</p>
+<br>
+<p> <!-- HTML generated using hilite.me --></p><div><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">choice </span>=<span style="color: #008800; font-weight: bold">'ham'</span>
+<span style="color: #008800; font-weight: bold">if</span> choice <span style="color: #333333">==</span> <span style="background-color: #fff0f0">'spam'</span>:
+<span style="color: #007020">  print</span>(<span style="color: #6600EE; font-weight: bold">1.25</span>)
+<span style="color: #008800; font-weight: bold">elif</span> choice <span style="color: #333333">==</span> <span style="background-color: #fff0f0">'ham'</span>:
+<span style="color: #007020">  print</span>(<span style="color: #6600EE; font-weight: bold">1.99</span>)
+<span style="color: #008800; font-weight: bold">elif</span> choice <span style="color: #333333">==</span> <span style="background-color: #fff0f0">'eggs'</span>:
+<span style="color: #007020">  print</span>(<span style="color: #6600EE; font-weight: bold">0.99</span>)
+<span style="color: #008800; font-weight: bold">elif</span> choice <span style="color: #333333">==</span> <span style="background-color: #fff0f0">'bacon'</span>:
+<span style="color: #007020">  print</span>(<span style="color: #6600EE; font-weight: bold">1.10</span>)
+<span style="color: #008800; font-weight: bold">else</span>:
+<span style="color: #007020">  print</span>(<span style="background-color: #fff0f0">'Bad choice'</span>)
+</pre></div>
+<p></p>
+<br>
+<p>You can also have an <a style="color: red;background: lightgrey;">else</a> without the <a style="color: red;background: lightgrey;">elif</a>:</p> 
+<br>
+<h5><b>Example</b></h5>
+<p><!-- HTML generated using hilite.me --></p><div><pre style="margin: 0; line-height: 125%">a <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">200</span>
+b <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">33</span>
+<span style="color: #008800; font-weight: bold">if</span> b <span style="color: #333333">&gt;</span> a:
+<span style="color: #007020">  print</span>(<span style="background-color: #fff0f0">"b is greater than a"</span>)
+<span style="color: #008800; font-weight: bold">else</span>:
+<span style="color: #007020">  print</span>(<span style="background-color: #fff0f0">"b is not greater than a"</span>)
+<span style="color: #007020">  print</span>(<span style="background-color: #fff0f0">'Bad choice'</span>)
+</pre></div>
+<p></p>
+<br>
+
+<h4>Python Syntax Rules</h4>
+ <hr class="newLine">
+ <ul>
+  <li><b> Statements execute one after another, until you say otherwise.</b> Python normally runs statements in a file or nested block in order from first to last, but statements like if (and, as you'll see, loops) cause the interpreter to jump around in your code. Because Python's path through a program is called the control flow, statements such as if that affect it are often called control-flow statements.</li>
+  <br>
+  <li><b>Block and statement boundaries are detected automatically.</b> As we've seen, there are no braces or "begin/end" delimiters around blocks of code in Python; instead, Python uses the indentation of statements under a header to group the statements in a nested block. Similarly, Python statements are not normally terminated with semicolons; rather, the end of a line usually marks the end of the statement coded on that line.</li>
+  <br>
+  <li><b>Compound statements = header +":"+ indented statements.</b> All compound statements in Python follow the same pattern: a header line terminated with a colon, followed by one or more nested statements, usually indented under the header. The indented statements are called a block (or sometimes, a suite). In the if statement, the elif and else clauses are part of the if, but they are also header lines with nested blocks of their own.</li>
+  <br>
+  <li><b>Blank lines, spaces, and comments are usually ignored.</b> Blank lines are ignored in files (but not at the interactive prompt, when they terminate compound statements). Spaces inside statements and expressions are almost always ignored (except in string literals, and when used for indentation). Comments are always ignored: they start with a # character (not inside a string literal) and extend to the end of the current line.</li>
+ </ul>
+<br>
+<h4>Short Hand If</h4>
+ <hr class="newLine">
+<p>If you have only one statement to execute, you can put it on the same line as the if statement.</p>
+<br>
+
+<h5><b>Example</b></h5>
+<p>One line if statement:</p>
+<p> <!-- HTML generated using hilite.me --></p><div><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">if</span> a <span style="color: #333333">&gt;</span> b: <span style="color: #007020">print</span>(<span style="background-color: #fff0f0">"a is greater than b"</span>)
+</pre></div>
+<p></p>
+<br>
+
+<h4>Short Hand If ... Else</h4>
+ <hr class="newLine">
+<p>If you have only one statement to execute, one for if, and one for else, you can put it all on the same line:</p>
+<br>
+<h5><b>Example</b></h5>
+<p>One line if else statement:</p>
+<p> <!-- HTML generated using hilite.me --></p><div><pre style="margin: 0; line-height: 125%">a <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">2</span>
+b <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">330</span>
+<span style="color: #888888">#&lt; statement1 &gt; if &lt; test1 &gt; else &lt; statement2 &gt;</span>
+<span style="color: #007020">  print</span>(<span style="background-color: #fff0f0">"A"</span>) <span style="color: #008800; font-weight: bold">if</span> a <span style="color: #333333">&gt;</span> b <span style="color: #008800; font-weight: bold">else</span> <span style="color: #007020">print</span>(<span style="background-color: #fff0f0">"B"</span>)
+</pre></div>
+<p></p>
+<p style="color:black;background-color: lightyellow;padding:10px;">This technique is known as <b>Ternary Operators</b>, or <b>Conditional Expressions.</b></p>
+<p>You can also have multiple else statements on the same line:</p>
+<br>
+<h5><b>Example</b></h5>
+<p>One line if else statement, with 3 conditions:</p>
+<p> <!-- HTML generated using hilite.me --></p><div><pre style="margin: 0; line-height: 125%">a <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">330</span>
+b <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">330</span>
+<span style="color: #007020">  print</span>(<span style="background-color: #fff0f0">"A"</span>) <span style="color: #008800; font-weight: bold">if</span> a <span style="color: #333333">&gt;</span> b <span style="color: #008800; font-weight: bold">else</span> <span style="color: #007020">print</span>(<span style="background-color: #fff0f0">"="</span>) <span style="color: #008800; font-weight: bold">if</span> a <span style="color: #333333">==</span> b <span style="color: #008800; font-weight: bold">else</span> <span style="color: #007020">print</span>(<span style="background-color: #fff0f0">"B"</span>)
+</pre></div>
+<p></p>
+<br>
+<h4>And</h4>
+ <hr class="newLine">
+<p>The <a style="color: red;background: lightgrey;">and</a> keyword is a logical operator, and is used to combine conditional statements:</p>
+<br>
+<h5><b>Example</b></h5>
+<p>Test if a is greater than b, AND if c is greater than a:</p>
+<p> <!-- HTML generated using hilite.me --></p><div><pre style="margin: 0; line-height: 125%">a <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">200</span>
+b <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">33</span>
+c <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">500</span>
+<span style="color: #008800; font-weight: bold">if</span> a <span style="color: #333333">&gt;</span> b <span style="color: #000000; font-weight: bold">and</span> c <span style="color: #333333">&gt;</span> a:
+<span style="color: #007020">   print</span>(<span style="background-color: #fff0f0">"Both conditions are True"</span>)
+</pre></div>
+<p></p>
+<br>
+<h4>Or</h4>
+ <hr class="newLine">
+<p>The <a style="color: red;background: lightgrey;">or</a> keyword is a logical operator, and is used to combine conditional statements:</p>
+<br>
+<h5><b>Example</b></h5>
+<p>Test if a is greater than b, OR if a is greater than c:</p>
+<p> <!-- HTML generated using hilite.me --></p><div> <pre style="margin: 0; line-height: 125%">a <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">200</span>
+b <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">33</span>
+c <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">500</span>
+<span style="color: #008800; font-weight: bold">if</span> a <span style="color: #333333">&gt;</span> b <span style="color: #000000; font-weight: bold">or</span> a <span style="color: #333333">&gt;</span> c:
+<span style="color: #007020">  print</span>(<span style="background-color: #fff0f0">"At least one of the conditions is True"</span>)
+</pre></div>
+<p></p>
+<br>
+<h4>Nested If</h4>
+ <hr class="newLine">
+ <p>You can have <a style="color: red;background: lightgrey;">if</a> statements inside <a style="color: red;background: lightgrey;">if</a> statements, this is called <b>nested</b> <a style="color: red;background: lightgrey;">if</a> statements.</p>
+<h5><b>Example</b></h5>
+<p><!-- HTML generated using hilite.me --></p><div><pre style="margin: 0; line-height: 125%">x<span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">1</span>
+<span style="color: #008800; font-weight: bold">if</span> x:
+y<span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">2</span>
+<span style="color: #008800; font-weight: bold">if</span> y:
+<span style="color: #007020">  print</span>(<span style="background-color: #fff0f0">'block2'</span>)
+<span style="color: #007020">  print</span>(<span style="background-color: #fff0f0">'block1'</span>)
+<span style="color: #007020">  print</span>(<span style="background-color: #fff0f0">'block0'</span>)
+</pre></div>
+<p></p>
+<br>
+<p style="text-align: center;"><img style="width:40%" src="./KoddyBlock_files/lesson7_picture1.png"></p>
+<br>
+<p>Indenting code is quite natural in practice. For example, the following (arguably silly) code snippet demonstrates common indentation errors in Python code: </p>
+<p> <!-- HTML generated using hilite.me --></p><div><pre style="margin: 0; line-height: 125%">x <span style="color: #333333">=</span> <span style="background-color: #fff0f0">'SPAM'</span> <span style="color: #888888"># Error: first line</span>
+indented
+<span style="color: #008800; font-weight: bold">if</span> <span style="background-color: #fff0f0">'rubbery'</span> <span style="color: #000000; font-weight: bold">in</span> <span style="background-color: #fff0f0">'shrubbery'</span>:
+<span style="color: #007020">  print</span>(x <span style="color: #333333">*</span> <span style="color: #0000DD; font-weight: bold">8</span>)
+x <span style="color: #333333">+=</span> <span style="background-color: #fff0f0">'NI'</span>    <span style="color: #888888"># Error: unexpected</span>
+indentation
+<span style="color: #008800; font-weight: bold">if</span> x<span style="color: #333333">.</span>endswith(<span style="background-color: #fff0f0">'NI'</span>):
+x <span style="color: #333333">*=</span> <span style="color: #0000DD; font-weight: bold">2</span>
+<span style="color: #007020">  print</span>(x)    <span style="color: #888888"># Error: inconsistent indentation</span>
+</pre></div>
+<p></p>
+<br>
+<p>The properly indented version of this code looks like the following-even for an artificial example like this, proper indentation makes the code's intent much more apparent:</p>  
+<br>
+<p> <!-- HTML generated using hilite.me --></p><div><pre style="margin: 0; line-height: 125%">x <span style="color: #333333">=</span> <span style="background-color: #fff0f0">'SPAM'</span>
+<span style="color: #008800; font-weight: bold">if</span> <span style="background-color: #fff0f0">'rubbery'</span> <span style="color: #000000; font-weight: bold">in</span> <span style="background-color: #fff0f0">'shrubbery'</span>:
+<span style="color: #007020">  print</span>(x <span style="color: #333333">*</span> <span style="color: #0000DD; font-weight: bold">8</span>)
+x <span style="color: #333333">+=</span> <span style="background-color: #fff0f0">'NI'</span> <span style="color: #888888"># x = x + 'NI'</span>
+<span style="color: #008800; font-weight: bold">if</span> x<span style="color: #333333">.</span>endswith(<span style="background-color: #fff0f0">'NI'</span>):
+x <span style="color: #333333">*=</span> <span style="color: #0000DD; font-weight: bold">2</span>
+<span style="color: #007020"> print</span>(x) <span style="color: #888888"># Prints "SPAMNISPAMNI"</span>
+</pre></div>
+
+  <p></p>
+  <br>
+<h4>The pass Statement</h4>
+ <hr class="newLine">
+<p><a style="color: red;background: lightgrey;">if</a> statements cannot be empty, but if you for some reason have an <a style="color: red;background: lightgrey;">if</a> statement with no content, put in the <a style="color: red;background: lightgrey;">pass</a> statement to avoid getting an error.</p>
+<br>
+<h5><b>Example</b></h5>
+<p> <!-- HTML generated using hilite.me --></p><div><pre style="margin: 0; line-height: 125%">a <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">33</span>
+b <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">200</span>
+
+<span style="color: #008800; font-weight: bold">if</span> b <span style="color: #333333">&gt;</span> a:
+<span style="color: #008800; font-weight: bold">pass</span>
+</pre></div>
+<p></p>
+<br>
+
+<h4><b>Practice these Exercises</b></h4>
+ <hr class="newLine">
+<ol>
+  <li>Given two int values, first = 8 and second = 10.<br> 
+Print the greatest value among them.</li>
+<br>
+<p> <!-- HTML generated using hilite.me --></p><div><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">if</span> first<span style="color: #333333">&gt;</span>second:
+    <span style="color: #007020">print</span>(<span style="background-color: #fff0f0">"Greatest is"</span>,first)
+<span style="color: #008800; font-weight: bold">elif</span> second<span style="color: #333333">&gt;</span>first:
+    <span style="color: #007020">print</span>(<span style="background-color: #fff0f0">"Greatest is"</span>,second)
+<span style="color: #008800; font-weight: bold">else</span>:
+    <span style="color: #007020">print</span>(<span style="background-color: #fff0f0">"Both are equal"</span>)
+</pre></div>
+<p></p>
+ 
+<li>A school has following rules for grading system:<br>
+a. Below 25 - F<br>
+b. 25 to 45 - E<br>
+c. 45 to 50 - D<br>
+d. 50 to 60 - C<br>
+e. 60 to 80 - B<br>
+f. Above 80 - A<br>
+If a student scored 85 then print the corresponding grade.<br>
+<p> <!-- HTML generated using hilite.me --></p><div><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">if</span> marks<span style="color: #333333">&lt;</span><span style="color: #0000DD; font-weight: bold">25</span>:
+    <span style="color: #007020">print</span>(<span style="background-color: #fff0f0">"F"</span>)
+<span style="color: #008800; font-weight: bold">elif</span> marks<span style="color: #333333">&gt;=</span><span style="color: #0000DD; font-weight: bold">25</span> <span style="color: #000000; font-weight: bold">and</span> marks<span style="color: #333333">&lt;</span><span style="color: #0000DD; font-weight: bold">45</span>:
+    <span style="color: #007020">print</span>(<span style="background-color: #fff0f0">"E"</span>)
+<span style="color: #008800; font-weight: bold">elif</span> marks<span style="color: #333333">&gt;=</span><span style="color: #0000DD; font-weight: bold">45</span> <span style="color: #000000; font-weight: bold">and</span> marks<span style="color: #333333">&lt;</span><span style="color: #0000DD; font-weight: bold">50</span>:
+    <span style="color: #007020">print</span>(<span style="background-color: #fff0f0">"D"</span>)
+<span style="color: #008800; font-weight: bold">elif</span> marks<span style="color: #333333">&gt;=</span><span style="color: #0000DD; font-weight: bold">50</span> <span style="color: #000000; font-weight: bold">and</span> marks<span style="color: #333333">&lt;</span><span style="color: #0000DD; font-weight: bold">60</span>:
+    <span style="color: #007020">print</span>(<span style="background-color: #fff0f0">"C"</span>)
+<span style="color: #008800; font-weight: bold">elif</span> marks<span style="color: #333333">&gt;=</span><span style="color: #0000DD; font-weight: bold">60</span> <span style="color: #000000; font-weight: bold">and</span> marks<span style="color: #333333">&lt;</span><span style="color: #0000DD; font-weight: bold">80</span>:
+    <span style="color: #007020">print</span>(<span style="background-color: #fff0f0">"B"</span>)
+<span style="color: #008800; font-weight: bold">else</span>:
+    <span style="color: #007020">print</span>(<span style="background-color: #fff0f0">"A"</span>)
+</pre></div>
+<p></p>
+
+
+</li>
+
+<li>We have the age of three siblings and want to determine the eldest and youngest among them.<br>
+Sib1 = 18<br>
+Sib2 = 14<br>
+Sib3 = 15<br>
+Print the youngest and eldest among the three siblings.<br>
+<p> <!-- HTML generated using hilite.me --></p><div><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">if</span> Sib1 <span style="color: #333333">&gt;=</span> Sib2 <span style="color: #000000; font-weight: bold">and</span> Sib1 <span style="color: #333333">&gt;=</span> Sib3:
+    <span style="color: #007020">print</span>(<span style="background-color: #fff0f0">"Oldest is"</span>,Sib1)
+<span style="color: #008800; font-weight: bold">elif</span> Sib2 <span style="color: #333333">&gt;=</span> Sib1 <span style="color: #000000; font-weight: bold">and</span> Sib2 <span style="color: #333333">&gt;=</span> Sib3:
+    <span style="color: #007020">print</span>(<span style="background-color: #fff0f0">"Oldest is"</span>,Sib2)
+<span style="color: #008800; font-weight: bold">elif</span> Sib3 <span style="color: #333333">&gt;=</span> Sib1 <span style="color: #000000; font-weight: bold">and</span> Sib3 <span style="color: #333333">&gt;=</span> Sib2:
+    <span style="color: #007020">print</span>(<span style="background-color: #fff0f0">"Oldest is"</span>,Sib3)
+<span style="color: #008800; font-weight: bold">else</span>:
+    <span style="color: #007020">print</span>(<span style="background-color: #fff0f0">"All are equal"</span>)
+</pre></div>
+<p></p>
+</li>
+</ol>
+
+<h3><b>Program exercises</b></h3>
+  <hr class="newLine">
+<ol>
+  <li>Revise all example and code in this document, user needs to run the code in PyCharm or  online editor</li>
+  <p> <!-- HTML generated using hilite.me --></p><div><pre style="margin: 0; line-height: 125%">x <span style="color: #333333">=</span> <span style="background-color: #fff0f0">'Burger'</span>
+<span style="color: #008800; font-weight: bold">if</span> <span style="background-color: #fff0f0">'Bur'</span> <span style="color: #000000; font-weight: bold">in</span> <span style="background-color: #fff0f0">'Burger'</span>:
+    <span style="color: #007020">print</span>(x <span style="color: #333333">*</span> <span style="color: #0000DD; font-weight: bold">8</span>)
+<span style="color: #008800; font-weight: bold">else</span>:
+    <span style="color: #007020">print</span>(x <span style="color: #333333">*</span> <span style="color: #0000DD; font-weight: bold">2</span>)
+</pre></div>
+<p></p>
+
+  <li>Write the code for the following problems:
+    <ul><li>Given the values of length and breadth of rectangle. Determine if it's a square or not. Length = 5 and breadth = 5.</li>
+    <li>A company decided to give bonus of 5% to employee if his/her year of service is more than 5 years. An employee salary is $100,000 and has been working for the company for 10 years now. Print the net bonus amount for the employee.</li>
+    <li>ABC shop has following discounts for the amount of purchases you make from them:</li>
+      <ul>
+      <li>Below $100 - 5%</li>
+      <li>$100 to $200 - 10%</li>
+      <li>$200 to $300 - 20%</li>
+      <li>$300 to $400 - 30%</li>
+      <li>More than $400 - 40%</li></ul>
+    John makes a purchase of $700 from the shop. Determine the percentage of discount he is eligible for and the total amount he needs to pay after applying the discount.</ul>
+    <p><!-- HTML generated using hilite.me --></p><div><pre style="margin: 0; line-height: 125%">x <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">300</span>
+<span style="color: #008800; font-weight: bold">if</span> x <span style="color: #333333">&lt;</span> <span style="color: #0000DD; font-weight: bold">100</span>:
+    <span style="color: #007020">print</span>(<span style="background-color: #fff0f0">'x is smaller than 100'</span>)
+<span style="color: #008800; font-weight: bold">elif</span> x<span style="color: #333333">&gt;</span><span style="color: #0000DD; font-weight: bold">100</span> <span style="color: #000000; font-weight: bold">and</span> x<span style="color: #333333">&lt;</span><span style="color: #0000DD; font-weight: bold">200</span>:
+    <span style="color: #007020">print</span>(<span style="background-color: #fff0f0">'x is greater than 100 but smaller than 200'</span>)
+<span style="color: #008800; font-weight: bold">else</span>:
+    <span style="color: #007020">print</span>(<span style="background-color: #fff0f0">'x is greater than 200'</span>)
+</pre></div>
+<p></p>
+
+
+    </li><li>Determine the output of the following block of codes:</li>
+    <br>
+
+    <p> <!-- HTML generated using hilite.me --></p><div><pre style="margin: 0; line-height: 125%">x <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">300</span>
+<span style="color: #008800; font-weight: bold">if</span> x <span style="color: #333333">&lt;</span> <span style="color: #0000DD; font-weight: bold">100</span>:
+    <span style="color: #007020">print</span>(<span style="background-color: #fff0f0">'x is smaller than 100'</span>)
+<span style="color: #008800; font-weight: bold">elif</span> x <span style="color: #333333">&gt;</span> <span style="color: #0000DD; font-weight: bold">100</span> <span style="color: #000000; font-weight: bold">and</span> x<span style="color: #333333">&lt;</span><span style="color: #0000DD; font-weight: bold">200</span>:
+    <span style="color: #008800; font-weight: bold">if</span> x <span style="color: #333333">&lt;</span> <span style="color: #0000DD; font-weight: bold">150</span>:
+        <span style="color: #007020">print</span>(<span style="background-color: #fff0f0">'x is greater than 100 but smaller than 150'</span>)
+    <span style="color: #008800; font-weight: bold">else</span>:
+        <span style="color: #007020">print</span>(<span style="background-color: #fff0f0">'x is greater than 150 but smaller than 200'</span>)
+<span style="color: #008800; font-weight: bold">else</span>:
+    <span style="color: #007020">print</span>(<span style="background-color: #fff0f0">'x is greater than 200'</span>)
+</pre></div>
+</ol>
+<p></p>
+<h6>Congratulations! Hope you enjoy this lesson. Continue with your quiz 😊.</h6>
+    </div>
+    
+  </div>
+</div>
+
+</div><script src="./KoddyBlock_files/jquery.min.js.download"></script>
+<script src="./KoddyBlock_files/bootstrap.min.js.download"></script>
+<script src="./KoddyBlock_files/jquery.min(1).js.download"></script>			</div>
+					</div>
+	</div>
+
+				<footer class="container-fluid" style="margin-top:15px; border-bottom:0; background: #333; color:#fff; border-bottom: 0; font-weight: normal; padding-bottom: 10px; padding-top: 13px;">
+				<div class="row">
+					<div class="col-sm-12">
+            <span style="color:#a29c9c">
+                All © copy rights reserved by iCodeNext Pty Ltd. 
+            </span>  
+						<!-- <a href="https://game.koddyblock.com/course/1092/lesson/314/activity/0" class="text-right">
+							<span class="quiz-link p-3 text-white text-center">
+								<p><span>Start Quiz</span></p>
+							</span>
+						</a> -->
+					</div>
+				</div>
+			</footer>
+		
+
+</body></html>
